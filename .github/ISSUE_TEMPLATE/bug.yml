@@ -1,0 +1,31 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in the KnowHub
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for contributing to the KnowHub! 👋
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        Please explain the bug and what behavior you expected.
+
+        Please provide as much detail as possible to make understanding and solving your problem as quick as possible. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Reproducible Example
+      description: >
+        If you can reproduce the bug, please provide a reproducible example below.
+
+      placeholder: |
+
+        ...
+      render: Python
