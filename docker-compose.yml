@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  backend:
+    container_name: knowledge-qa-backend
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8077
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+      - ./knowledge_qa.db:/app/knowledge_qa.db
+    ports:
+      - "8077:8077"
+    env_file:
+      - .env
+  frontend:
+    container_name: knowledge-qa-frontend
+    build: .
+    command: streamlit run frontend.py --server.address=0.0.0.0 --server.port=8501
+    volumes:
+      - .:/app
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE_URL=http://backend:8077
+    depends_on:
+      - backend
